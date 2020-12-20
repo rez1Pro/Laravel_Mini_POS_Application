@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title'];
+    
+    public static function arrayOfCategories(){
+        foreach(self::all() as $category){
+             $arr[$category->id] = $category->title; 
+        }
+        return $arr;
+    }
 }

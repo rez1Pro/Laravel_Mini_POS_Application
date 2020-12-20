@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Products\CategoriesController;
+use App\Http\Controllers\Products\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,19 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('users', function () {
-    return view('users.users');
-});
+//Route::resource('users',UserController::class , ['except' => ['show']]);
+Route::resource('users',UserController::class);
 
-Route::get('group', 'App\Http\Controllers\UserGroupController@index');
-Route::post('group', 'App\Http\Controllers\UserGroupController@create');
-Route::delete('group/{id}', 'App\Http\Controllers\UserGroupController@delete');
+Route::get('/group', 'App\Http\Controllers\Users\UserGroupController@index')->name('group');
+Route::post('/group', 'App\Http\Controllers\Users\UserGroupController@create')->name('group');
+Route::delete('group/{id}', 'App\Http\Controllers\Users\UserGroupController@delete')->name('group/{id}');
 
-
-Route::get('categories', function () {
-    return view('categories.categories');
-});
-
-Route::get('products', function () {
-    return view('products.products');
-});
+Route::resource('categories', CategoriesController::class ,  ['except' => ['show']]);
+Route::resource('products', ProductsController::class);

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use  App\Models\Group;
 use Illuminate\Support\Facades\Session;
@@ -14,19 +15,22 @@ class UserGroupController extends Controller
         return view('group.group',$this->data);
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
+        $request->validate([
+            'title' => "required|unique:groups"
+        ]);
       if( Group::create($request->all())){
-        session::flash('message', 'Group Successfully Created!');
+
+        session::flash('success_message', 'Group Successfully Created!');
         return redirect()->to('/group');
-      }else{
-          return "Something wents wrong!";
       }
-        
+
     }
 
     public function delete($id){
      if( Group::find($id)->delete()){
-        session::flash('message', 'Group Successfully Deleted!');
+        session::flash('delete_message', 'Group Successfully Deleted!');
         return redirect()->to('/group');
      }
 

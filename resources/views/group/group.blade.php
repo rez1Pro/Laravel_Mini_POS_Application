@@ -1,29 +1,43 @@
-@extends('layout.main')
-@section('page-title', 'User Group page')
+@extends('layouts.main')
+@section('page-title', 'Group | Welcome to Admin Control Panel')
 
-@section('modal-button', 'Add New Group')
-@section('data-target', 'One')
+@section('modal-btn')
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#One"><span><i
+                class="fa fa-plus"></i>Add New</span>
+    </button>
+@endsection
 @section('target-id', 'One')
 @section('modal-title', 'Create A New User Group')
 @section('modal-content')
     <div>
-        <form action="{{ url('/group') }}" method="POST">
+        <form action="{{ route('group') }}" method="POST">
             @csrf
             <label for="group">Type Your Group Name:</label>
-            <input type="text" id="group" placeholder="Group Name" class="form-control" name="title"> <br>
+            <input type="text" id="group" placeholder="Group Name"
+                class="form-control {{ $errors->get('title') ? 'is-invalid' : '' }}" name="title">
+            @foreach ($errors->get('title') as $error)
+                <span class="text-danger font-italic">{{ $error }}</span>
+            @endforeach
+            <br>
             <input type="submit" value="Save Now" class="form-control alert-info">
         </form>
     </div>
 @stop
 
 @section('main_content')
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Users Group</h1>
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    @if(session('message'))
-    <center class="alert-success container col-6">{{ session('message')}}</center>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Users Group</h1>
+
+
+    <!------ Message View ----->
+    @if (session('success_message'))
+        <center class="alert alert-success">{{ session('success_message') }}</center>
+    @elseif(session('delete_message'))
+        <center class="alert alert-danger">{{ session('delete_message') }}</center>
     @endif
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">All Users Group</h6>
         </div>
@@ -38,19 +52,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1;  ?>
-                        @foreach($data as $value)
-                        <tr>
-                        <td>{{$i++}}</td>
-                            <td>{{ $value->title }}</td>
-                            <td>
-                            <form action="{{ url('group/'.$value->id)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                    <input onclick="return confirm('Are You Serious!')" type="submit" value="Delete" class="form-control btn btn-danger">
-                                </form>
-                            </td>
-                        </tr>
+                        <?php $i = 1; ?>
+                        @foreach ($data as $value)
+                            <tr>
+                                <td>{{ $i++ }}</td>
+                                <td>{{ $value->title }}</td>
+                                <td>
+                                    <form action="{{ route('group/{id}', ['id' => $value->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input onclick="return confirm('Are You Serious!')" type="submit" value="Delete"
+                                            class="form-control btn btn-danger">
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
