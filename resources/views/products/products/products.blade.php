@@ -8,13 +8,6 @@
         <h1 class="h3 mb-2 text-gray-800">Products List</h1>
     </div>
 
-    <!------ Message View ----->
-    @if (session('success_message'))
-        <center class="alert alert-success">{{ session('success_message') }}</center>
-    @elseif(session('delete_message'))
-        <center class="alert alert-danger">{{ session('delete_message') }}</center>
-    @endif
-
     <!---- Data Table ---->
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">All Products</h6>
@@ -24,7 +17,7 @@
             <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>SL NO.</th>
+                        <th>#SL.</th>
                         <th>Title</th>
                         <th>Category</th>
                         <th>Cost-Price</th>
@@ -39,10 +32,11 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->category->title }}</td>
-                                <td>{{ $product->cost_price }}</td>
-                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->cost_price }} $</td>
+                                <td>{{ $product->price }} $</td>
                                 <td>
-                                    <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="post">
+                                    <form id="delete-form-{{ $product->id }}"
+                                        action="{{ route('products.destroy', ['product' => $product->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
 
@@ -54,10 +48,9 @@
                                             class="form-control btn-circle btn-success"><i class="fa fa-edit"></i>
                                         </a>
 
-                                        <a onclick="return confirm('Are You Serious!')"
-                                            href="{{ route('products.destroy', ['product' => $product->id]) }}"
+                                        <button onclick="return false" data-id="delete-form-{{ $product->id }}" id="delete"
                                             class="form-control btn-circle btn-danger"><i class="fa fa-trash"></i>
-                                        </a>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

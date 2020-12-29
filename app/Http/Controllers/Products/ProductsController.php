@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductsController extends Controller
 {
@@ -18,6 +18,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        if(Session::has('s_msg')){
+            Alert::success('Create Successfull' , 'Data Successfully Create!', 'success');
+        }
+
+        if(Session::has('u_msg')){
+            Alert::success('Update Successfull' , 'Data Successfully Updated!', 'success');
+        }
         $this->data['products'] = Product::all();
         return view('products.products.products' , $this->data);
     }
@@ -27,11 +34,13 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()`
+    public function create()
     {
         $this->data['categories']    = Category::arrayOfCategories();
         $this->data['page_title']    = "Create A New Product";
         $this->data['mode']           = "create";
+        $this->data['button']          = 'Create Now';
+
         return view("products.products.product-form" , $this->data);
     }
 
@@ -45,18 +54,15 @@ class ProductsController extends Controller
     {
         $request->validate([
             'category_id'      => 'required',
-            'title'                   => 'required|max:100',
-            'description'       => 'required|max:500|min:50',
-            'cost_price'        => 'required|numeric',
-            'price'                => 'required|numeric'
+            'title'                   => 'required|max:100|unique:products',
+            'description'       => 'required|max:1000|min:500|unique:products',
+            'cost_price'         => 'required|numeric',
+            'price'                 => 'required|numeric'
         ]);
-
+    
         if($request->all()){
             Product::create($request->all());
-            Session::flash('success_message','Product Successfully Created!');
-            return redirect()->to("/products");
-        }else{
-            Session::flash('delete_message','Something wents wrong!Please try again!');
+           Session::flash('s_msg','Success');
             return redirect()->to("/products");
         }
     }
@@ -69,7 +75,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->data['product'] = Product::findOrFail($id);
+        return view('products.products.show' , $this->data);
     }
 
     /**
@@ -80,7 +87,14 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->data['categories']    = Category::arrayOfCategories();
+        $this->data['page_title']    = "Update Product";
+        $this->data['mode']           = "edit";
+        $this->data['button']          = 'Update Now';
+
+        $this->data['product']    =  Product::findOrFail($id);
+        return view('products.products.product-form'  , $this->data);
+        
     }
 
     /**
@@ -92,7 +106,27 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+                    'category_id'      => 'required',
+                    'title'                   => 'required|max:100|unique:products,title,'.$id,
+                    'description'       => 'required|max:1000|min:500',
+                    'cost_price'         => 'required|numeric',
+                    'price'                 => 'required|numeric'
+                ]);
+
+        if($request->all()){
+             $product                             =  Product::findOrFail($id);
+             $product->title                   =   $request->title;
+             $product->description       =   $request->description;
+             $product->category_id      =   $request->category_id;
+             $product->cost_price        =   $request->cost_price;
+             $product->price                =   $request->price;
+
+            if($product->save()){
+            Session::flash('u_msg','Data Successfully Updated!');
+            return redirect()->to('/products');
+            }
+        }
     }
 
     /**
@@ -103,6 +137,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        if(Product::findOrFail($id)->delete()){
+            return redirect()->to('products');
+            }
+     
+
+  }
 }

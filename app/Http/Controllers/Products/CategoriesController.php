@@ -28,6 +28,8 @@ class CategoriesController extends Controller
     {
         $this->data['page_title']    = "Create A New Category";
         $this->data['mode']           = "create";
+        $this->data['button']          = 'Create Now';
+        
         return view("products.category.category-form" , $this->data);
     }
 
@@ -45,7 +47,7 @@ class CategoriesController extends Controller
 
         if($request->all()){
             Category::create($request->all());
-             Session::flash('success_message','Category Successfully Created!');
+             flash('Category Successfully Created!')->success();
             return redirect()->to("/categories");
         }
     }
@@ -61,7 +63,7 @@ class CategoriesController extends Controller
         $this->data['page_title']    = "Update Category";
         $this->data['mode']           = "edit";
         $this->data['category']      = Category::findOrFail($id);
-
+        $this->data['button']          = 'Update Now';
         return view("products.category.category-form" , $this->data);
     }
 
@@ -83,7 +85,7 @@ class CategoriesController extends Controller
             $cat->title              =     $request->get('title');
             
             if($cat->save()){
-             Session::flash('success_message','Category Successfully Updated!');
+             flash('Category Successfully Updated!')->success();
             return redirect()->to("/categories");
             }
         }

@@ -53,16 +53,17 @@
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        @foreach ($data as $value)
+                        @foreach ($data as $group)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $value->title }}</td>
+                                <td>{{ $group->title }}</td>
                                 <td>
-                                    <form action="{{ route('group/{id}', ['id' => $value->id]) }}" method="POST">
+                                    <form id="delete-form-{{ $group->id }}"
+                                        action="{{ route('group.destroy', ['id' => $group->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <input onclick="return confirm('Are You Serious!')" type="submit" value="Delete"
-                                            class="form-control btn btn-danger">
+                                        <button onclick="return false" data-id="delete-form-{{ $group->id }}" id="delete"
+                                            class="form-control btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                             </tr>

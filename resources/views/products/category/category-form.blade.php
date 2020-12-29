@@ -32,7 +32,7 @@
                                     @endforeach
 
                                     <div class="float-right">
-                                        {{ Form::submit('Create Now', ['class' => 'form-control btn btn-success mt-3 mb-3']) }}
+                                        {{ Form::submit($button, ['class' => 'form-control btn btn-success mt-3 mb-3']) }}
                                     </div>
                                     {!! Form::close() !!}
                                 </div>

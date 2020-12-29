@@ -28,6 +28,8 @@ class UserController extends Controller
         $this->data['page_title']    = "Create A New User";
         $this->data['mode']           = "create";
         $this->data['headline']      = "Create A New User";
+        $this->data['button']          = 'Create Now';
+
         return view("users.form" , $this->data);
     }
     /**
@@ -73,7 +75,7 @@ class UserController extends Controller
         $this->data['page_title']  = "Update ".User::findOrFail($id)['name']."'s data";
         $this->data['mode']         = "edit";
         $this->data['headline']    = "Update ".User::findOrFail($id)['name']."'s Data";
-        
+        $this->data['button']          = 'Update Now';
         return view('users.form',$this->data);
     }
 

@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="col-sm-10">
-                    {{ Form::submit('Create Now', ['class' => 'form-control btn btn-success mt-3 mb-3']) }}
+                    {{ Form::submit($button, ['class' => 'form-control btn btn-success mt-3 mb-3']) }}
                 </div>
             </div>
         </div>

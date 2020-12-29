@@ -37,7 +37,8 @@
                                     <td>{{ $i++ }}</td>
                                     <td>{{ $category->title }}</td>
                                     <td>
-                                        <form action="{{ route('categories.destroy', ['category' => $category->id]) }}"
+                                        <form id="delete-form-{{ $category->id }}"
+                                            action="{{ route('categories.destroy', ['category' => $category->id]) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')
@@ -46,7 +47,7 @@
                                                 class="form-control btn-circle btn-success"><i class="fa fa-edit"></i>
                                             </a>
 
-                                            <button onclick="return confirm('Are You Serious!')" type="submit" value="Delete"
+                                            <button onclick="return false" data-id="delete-form-{{ $category->id }}" id="delete"
                                                 class="form-control btn-circle btn-danger"><i class="fa fa-trash"></i>
                                             </button>
                                         </form>

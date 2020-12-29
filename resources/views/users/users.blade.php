@@ -28,8 +28,7 @@
                         <th>Name</th>
                         <th>Group</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
+                        <th>Phone/URL</th>
                         <th style="width:20%">Action</th>
                     </tr>
                 </thead>
@@ -42,9 +41,9 @@
                                 <td>{{ $user->group->title }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
-                                <td>{{ $user->address }}</td>
                                 <td>
-                                    <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="post">
+                                    <form id="delete-form-{{ $user->id }}"
+                                        action="{{ route('users.destroy', ['user' => $user->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
 
@@ -56,7 +55,7 @@
                                             class="form-control btn-circle btn-success"><i class="fa fa-user-edit"></i>
                                         </a>
 
-                                        <button onclick="return confirm('Are You Serious!')" type="submit" value="Delete"
+                                        <button onclick="return false" data-id="delete-form-{{ $user->id }}" id="delete"
                                             class="form-control btn-circle btn-danger"><i class="fa fa-trash"></i>
                                         </button>
                                     </form>
