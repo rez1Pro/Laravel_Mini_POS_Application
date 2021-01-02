@@ -4,21 +4,23 @@
 @section('main_content')
     <!-- Page Heading -->
     <div class="container-4">
-        <a href="{{ route('products.create') }}" class="btn btn-success float-right"><i class="fa fa-plus"></i> New payment
-        </a>
-        <a href="{{ route('products.create') }}" class="btn btn-success float-right"><i class="fa fa-plus"></i> New Sale
-        </a>
-        <a href="{{ route('products.create') }}" class="btn btn-success float-right"><i class="fa fa-plus"></i> New
-            Purchase </a>
-        <a href="{{ route('products.create') }}" class="btn btn-success float-right"><i class="fa fa-plus"></i> New Receipt
-        </a>
-    </div>
-    <a href="{{ route('products.index') }}" class="btn btn-info">
-        <i class="fa fa-arrow-left"></i> Back</a>
-    <br>
-    <br>
+        <a href="{{ route('products.index') }}" class="float-left btn btn-sm btn-info">
+            <i class="fa fa-arrow-left"></i> Back</a>
+        <div class="float-right">
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>
+                New
+                payment
+            </a>
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> New Sale
+            </a>
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> New
+                Purchase </a>
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> New Receipt
+            </a>
+        </div>
+        <br>
+        <br>
 
-    <div class="container">
         <div class="row">
             <div class="col-md-0"></div>
             <div class="container col-md-10">

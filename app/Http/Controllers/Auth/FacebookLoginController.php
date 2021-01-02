@@ -32,7 +32,7 @@ class FacebookLoginController extends Controller
 
         }else{
             if(isset(Admin::where('email' , $user->email)->first()->email)){
-                    Alert::error("You are Already Registered!");
+                    Alert::error("Please Try Another Account!");
                     return redirect()->intended('/login');
                        }else{                        
                                 $new_user                               =   new Admin();

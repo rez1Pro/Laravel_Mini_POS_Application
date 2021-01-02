@@ -18,6 +18,7 @@ class CreateSaleInvoicesTable extends Migration
             $table->foreignId('user_id')->nullable();
             $table->foreignId('admin_id')->nullable();
             $table->string('challan_no')->nullable();
+            $table->double('total')->nullable();
             $table->date('date');
             $table->timestamps();
         });

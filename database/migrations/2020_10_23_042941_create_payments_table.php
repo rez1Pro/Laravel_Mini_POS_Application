@@ -15,11 +15,11 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('admin_id');
-            $table->double('amount');
-            $table->date('date');
-            $table->string('note',50);
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('admin_id')->nullable();
+            $table->double('amount')->nullable();
+            $table->date('date')->nullable();
+            $table->string('note',50)->nullable();
             $table->timestamps();
         });
     }

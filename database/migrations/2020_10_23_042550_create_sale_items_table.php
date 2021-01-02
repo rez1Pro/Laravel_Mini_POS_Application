@@ -15,11 +15,11 @@ class CreateSaleItemsTable extends Migration
     {
         Schema::create('sale_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id');
-            $table->foreignId('sale_invoice_id');
-            $table->double('price');
-            $table->double('quantity');
-            $table->double('total');
+            $table->foreignId('product_id')->nullable();
+            $table->foreignId('sale_invoice_id')->nullable();
+            $table->double('price')->nullable();
+            $table->double('quantity')->nullable();
+            $table->double('total')->nullable();
             $table->timestamps();
         });
     }

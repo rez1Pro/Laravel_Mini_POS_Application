@@ -1,23 +1,21 @@
-<!-- Bootstrap core JavaScript-->
-<script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="{{ asset('assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
-
-<!-- Page level plugins -->
-<script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-<!-- Page level custom scripts -->
-<script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 <!----- Sweet Alert ---->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <script>
+    // Datatable
+    $(document).ready(function() {
+        $('#myDataTable').DataTable();
+    });
+    $(document).ready(function() {
+        $('#dataTable-purchase').DataTable();
+    });
+    $(document).ready(function() {
+        $('#dataTable-payment').DataTable();
+    });
+    $(document).ready(function() {
+        $('#dataTable-receipt').DataTable();
+    });
+    // Flush messsage
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 
     $(document).on('click', '#delete', function(e) {

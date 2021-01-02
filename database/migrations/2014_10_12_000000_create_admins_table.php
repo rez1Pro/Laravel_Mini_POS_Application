@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('profile_link')->nullable();
             $table->string('avatar_link')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->float('provider_id' , '100')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('address','200')->nullable();

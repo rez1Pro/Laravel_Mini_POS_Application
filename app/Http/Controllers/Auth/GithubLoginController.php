@@ -26,7 +26,7 @@ class GithubLoginController extends Controller
                     return redirect()->intended('/dashboard');
                 }else{
                 if(isset( Admin::where('email' , $user->email)->first()->email)){
-                    Alert::error("You are Already Registered!");
+                    Alert::error("Please Try with another account!");
                     return redirect()->intended('/login');
                }else{
                         $new_user = new Admin();

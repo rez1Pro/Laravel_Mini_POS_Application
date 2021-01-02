@@ -15,8 +15,8 @@ class CreatePurchaseItemsTable extends Migration
     {
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id');
-            $table->foreignId('purchase_invoice_id');
+            $table->foreignId('product_id')->nullable();
+            $table->foreignId('purchase_invoice_id')->nullable();
             $table->double('quantity')->nullable();
             $table->double('price')->nullable();
             $table->double('total')->nullable();

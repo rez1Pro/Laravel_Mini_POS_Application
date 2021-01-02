@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\PurchasesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Auth\GithubLoginController;
@@ -65,5 +68,13 @@ Route::delete('group/{id}', 'App\Http\Controllers\Users\UserGroupController@dele
 
 Route::resource('categories', CategoriesController::class ,  ['except' => ['show']]);
 Route::resource('products', ProductsController::class);
-
+// Sales information
+Route::delete('sales/{id}/destroy' , [SalesController::class , 'destroy'])->name('sales.destroy');
+//Purchases
+Route::delete('purchases/{id}/destroy' , [PurchasesController::class , 'destroy'])->name('purchases.destroy');
+//Payments
+Route::delete('payments/{id}/destroy' , [PaymentsController::class , 'destroy'])->name('payments.destroy');
+Route::post('payments/create' , [PaymentsController::class , 'store'])->name('payments.create');
+//Receipts
+Route::delete('receipts/{id}/destroy' , [ReceiptController::class , 'destroy'])->name('receipts.destroy');
 });

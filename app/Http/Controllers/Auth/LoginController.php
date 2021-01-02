@@ -21,8 +21,10 @@ class LoginController extends Controller
     // Login Authentication
     public function authenticate(LoginRequest $request)
     {
-        $data = $request->only('email' , 'password');
-        if(Auth::attempt($data)){
+        if(Auth::attempt(
+        $request->only('email' , 'password'),
+        $request->filled('remember')
+        )){
             Alert::success('You Are Successfully Logged In!');
            return redirect()->intended('/dashboard');
         }else{
