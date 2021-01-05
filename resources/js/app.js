@@ -21,4 +21,7 @@ require('startbootstrap-sb-admin-2/vendor/fontawesome-free/js/all')
 require('datatables.net-buttons/js/buttons.colVis.js')();
 require('datatables.net-buttons/js/buttons.html5.js')();
 require('datatables.net-buttons/js/buttons.flash.js')();
-require('datatables.net-buttons/js/buttons.print.js')();  
+require('datatables.net-buttons/js/buttons.print.js')();
+
+/* const App = {}
+Vue.createApp(App).mount('#app'); */

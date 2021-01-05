@@ -78883,6 +78883,8 @@ __webpack_require__(/*! datatables.net-buttons/js/buttons.html5.js */ "./node_mo
 __webpack_require__(/*! datatables.net-buttons/js/buttons.flash.js */ "./node_modules/datatables.net-buttons/js/buttons.flash.js")();
 
 __webpack_require__(/*! datatables.net-buttons/js/buttons.print.js */ "./node_modules/datatables.net-buttons/js/buttons.print.js")();
+/* const App = {}
+Vue.createApp(App).mount('#app'); */
 
 /***/ }),
 
@@ -78893,7 +78895,11 @@ __webpack_require__(/*! datatables.net-buttons/js/buttons.print.js */ "./node_mo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"); // Vue
+//import { createApp } from 'Vue'
+//import App from './MyApp.vue'
+//createApp(App).mount("#app")
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -78928,8 +78934,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\Laravel_Mini_POS_Application\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\Laravel_Mini_POS_Application\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! D:\Current Projects\Laravel_Mini_POS_Application\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Current Projects\Laravel_Mini_POS_Application\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

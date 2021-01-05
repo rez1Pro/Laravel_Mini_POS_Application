@@ -10,7 +10,7 @@
                                     </tr>
                                     <tr>
                                         <th class="text-center">Group :</th>
-                                        <td>{{ $user->group->title }}</td>
+                                        <td>{{ optional($user->group)->title }}</td>
                                     </tr>
                                     <tr>
                                         <th class="text-center">Email :</th>

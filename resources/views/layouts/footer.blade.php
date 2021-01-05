@@ -1,3 +1,4 @@
+</div>
 <script src="{{ mix('js/app.js') }}"></script>
 <!----- Sweet Alert ---->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -14,6 +15,9 @@
     });
     $(document).ready(function() {
         $('#dataTable-receipt').DataTable();
+    });
+    $(document).ready(function() {
+        $('#dataTable-sale').DataTable();
     });
     // Flush messsage
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);

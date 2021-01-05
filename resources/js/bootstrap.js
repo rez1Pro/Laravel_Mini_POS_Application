@@ -1,5 +1,9 @@
 window._ = require('lodash');
 
+// Vue
+//import { createApp } from 'Vue'
+//import App from './MyApp.vue'
+//createApp(App).mount("#app")
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
